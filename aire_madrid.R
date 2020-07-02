@@ -2,15 +2,9 @@
 # packages ----------------------------------------------------------------
 
 library(data.table)
-library(ggplot2)
-library(plotly)
 library(stringr)
 library(XML)
-library(rvest)
 library(zoo)
-library(tseries)
-library(fpp3)
-library(timeSeries)
 
 # Functions ---------------------------------------------------------------
 
@@ -53,6 +47,17 @@ xts_ts <- function(xts_data) {
 
 
 # working directory -------------------------------------------------------
+
+# Create directory
+
+if (!dir.exists('~/aire_madrid')) {
+  dir.create('~/aire_madrid')  
+}
+
+if (!dir.exists('~/aire_madrid/raw_data')) {
+  dir.create('raw_data')  
+}
+
 setwd('~/aire_madrid/')
 
 
@@ -255,14 +260,6 @@ links <-
   )
 
 links[, file_name := paste0('datos_aire_madrid_', year, '.zip')]
-
-
-
-# Create directory
-if (!dir.exists('~/aire_madrid/raw_data')) {
-  dir.create('raw_data')  
-}
-
 
 # Download. The las year always for update, check if there are previous years
 for (i in links[, year]) {
