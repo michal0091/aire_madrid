@@ -1,4 +1,4 @@
-# aire_madrid
+# aire_madrid.R
 
 ## About
 Descarga de datos de calidad de aire de las estaciones de medición de Madrid 
