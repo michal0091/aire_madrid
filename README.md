@@ -1,8 +1,9 @@
 # aire_madrid.R
 
 ## About
-Descarga de datos de calidad de aire de las estaciones de medición de Madrid 
-Download of air quality data from Madrid measurement stations
+Descarga de datos de calidad de aire de las estaciones de medición de Madrid.
+
+Download of air quality data from Madrid measurement stations.
 
 [Raw data interpretation (ES)](https://datos.madrid.es/FWProjects/egob/Catalogo/MedioAmbiente/Aire/Ficheros/Interprete_ficheros_%20calidad_%20del_%20aire_global.pdf)
 
