@@ -3,7 +3,7 @@
 
 library(data.table)
 library(stringr)
-library(XML)
+library(xml2)
 library(zoo)
 
 # Functions ---------------------------------------------------------------
