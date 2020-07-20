@@ -8,7 +8,7 @@ Download of air quality data from Madrid measurement stations.
 [Raw data interpretation (ES)](https://datos.madrid.es/FWProjects/egob/Catalogo/MedioAmbiente/Aire/Ficheros/Interprete_ficheros_%20calidad_%20del_%20aire_global.pdf)
 
 ## Libraries needed
-Libraries used in this script are: `data.table`, `stringr`, `XML` and `zoo`.
+Libraries used in this script are: `data.table`, `stringr`, `xml2` and `zoo`.
 
 ## Input data
 [data files from Calidad del aire. https://datos.madrid.es/](https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=41e01e007c9db410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default)
