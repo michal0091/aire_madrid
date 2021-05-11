@@ -14,5 +14,5 @@
 !./dictionaries/station_names.RDS
 
 # Ignore subdirectories of data
-./data/processed/*
-./data/raw/*
+./data/processed/*/
+./data/raw/*/
