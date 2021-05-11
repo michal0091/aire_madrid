@@ -1,0 +1,12 @@
+default:
+  datos_madrid_url: 'https://datos.madrid.es/egob/catalogo/201200-0-calidad-aire-horario.dcat'
+  raw_data_path: 'data/raw/'
+  dictionaries:
+    columns_structure: 'dictionaries/col_structure.RDS'
+    magnitudes_names: 'dictionaries/magnitudes_names.RDS'
+    station_names: 'dictionaries/station_names.RDS'
+  subset_id_cols: [
+    estaciones, id, id_name, longitud, latitud,fecha, nom_mag, nom_abv, ud_med]
+  output:
+    wide_data: 'data/processed/dt_aire_madrid.RDS'
+    subseted_long_data: 'data/processed/dt_aire_madrid_sub.RDS'
