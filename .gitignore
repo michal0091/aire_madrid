@@ -4,6 +4,7 @@
 .Rhistory
 .RData
 .Ruserdata
+./*.txt
 
 # Exeptions
 !./.gitignore
