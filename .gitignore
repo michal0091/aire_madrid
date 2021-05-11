@@ -1,0 +1,18 @@
+# Ignore eveerything
+./*
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# Exeptions
+!./.gitignore
+!./*.R
+!./*/
+!./dictionaries/col_structure.RDS
+!./dictionaries/magnitudes_names.RDS
+!./dictionaries/station_names.RDS
+
+# Ignore subdirectories of data
+./data/processed/*
+./data/raw/*
