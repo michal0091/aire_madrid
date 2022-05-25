@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/276616688.svg)](https://zenodo.org/badge/latestdoi/276616688)
+
 # aire_madrid.R
 
 ## About
