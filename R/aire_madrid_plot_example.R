@@ -19,11 +19,11 @@ dt_sub <- readRDS(config$output$subseted_long_data)
 mendez_alvaro_weekly_no2 <-
   dt_sub[id_name == 'Mendez Alvaro' &
            nom_abv == 'NO2' &
-           fecha >= '2010-01-01'][, .(weekly_no2 = max(valor, na.rm = T)), .(year = year(fecha), week = week(fecha))]
+           fecha >= '2011-01-01'][, .(weekly_no2 = mean(valor, na.rm = T)), .(year = year(fecha), week = week(fecha))]
 
-mendez_alvaro_weekly_no2[, med_10y := mean(weekly_no2[year %in% 2010:2019]), week]
+mendez_alvaro_weekly_no2[, med_10y := mean(weekly_no2[year %in% 2011:2020]), week]
 
-mendez_alvaro_weekly_no2 <- mendez_alvaro_weekly_no2[year >= 2019]
+mendez_alvaro_weekly_no2 <- mendez_alvaro_weekly_no2[year >= 2020]
 
 mendez_alvaro_weekly_no2 <-
   melt(
@@ -45,13 +45,13 @@ ggplot(mendez_alvaro_weekly_no2[week < 53], aes(week, value, colour = factor(var
   geom_line(size = 1.2) +
   geom_vline(xintercept = 11) +
   geom_text(
-    aes(x = 10.5, label = "Estado de alarma", y = 225),
+    aes(x = 10.5, label = "Estado de alarma", y = 75),
     colour = "red",
     angle = 90,
     vjust = -1,
     text = element_text(size = 11)
   ) +
-scale_y_continuous(breaks = seq(0, 300, 25)) +
+scale_y_continuous(breaks = seq(0, 125, 25), limits = c(0, 125)) +
   scale_x_continuous(breaks = seq(0, 52, 4)) +
   labs(
     title = 'Datos del promedio semanal de la magnitud Dióxido de nitrógeno [µg/m³]',
@@ -67,7 +67,7 @@ scale_y_continuous(breaks = seq(0, 300, 25)) +
     title_family = 'Helvetica',
     base_family = 'Helvetica'
   ) +
-  ggthemes::scale_color_wsj(labels = c("Media de 10 años", "Año 2019", "Año 2020", "Año 2021")) +
+  ggthemes::scale_color_wsj(labels = c("Media de 10 años", "Año 2020", "Año 2021", "Año 2022")) +
   theme(
     legend.position = 'top',
     plot.title = element_text(size = 14),
