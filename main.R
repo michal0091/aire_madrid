@@ -94,28 +94,13 @@ data_files <-
       rep('old', length(txt_data_files_before_oct_2017)),
           rep('new', length(txt_data_files_after_oct_2017))))
     
-
-# Read data and rbind
-dt_before_oct_2017 <- data.table()
-dt_after_oct_2017 <- data.table()
+dt <- data.table()
 
 for (i in data_files[, files]) {
-  
-  if (data_files[files == i, txt_format] == 'old') {
-    lines <- readLines(paste0(config$raw_data_path, i))
-    dt <- data.table(apply(
-      X = col_structure, MARGIN = 1,
-      FUN = function(x) str_sub(string = lines, start = x[3], end = x[4])))
-    names(dt) <- col_structure[, name_cols]
-    dt_before_oct_2017 <- rbind(dt_before_oct_2017, dt)
-    
-  } else {
-    dt <- fread(paste0(config$raw_data_path, i))
-    names(dt) <- col_structure[, name_cols]
-    dt_after_oct_2017 <- rbind(dt_after_oct_2017, dt)
-  }
+  dt_aux <- fread(paste0(config$raw_data_path, i))
+  names(dt_aux) <- col_structure[, name_cols]
+  dt <- rbind(dt_aux, dt)
 }
-
 
 dt <- rbind(dt_before_oct_2017, dt_after_oct_2017)
 cols_to_numeric <- str_subset(names(dt), pattern = '^V', negate = T)
@@ -124,7 +109,6 @@ dt[, ANO := fifelse(ANO < 100, ANO + 2000, ANO)]
 
 # Save
 saveRDS(dt, output$wide_data)
-rm(dt_before_oct_2017, dt_after_oct_2017, col_structure)
 
 
 # Reshaping data for use --------------------------------------------------
