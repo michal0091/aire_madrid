@@ -145,3 +145,33 @@ calima[, ggplot(.SD, aes(fecha, valor_promedio, colour = nom_mag)) +
          )
 ]
 
+
+
+# Calendar plot -----------------------------------------------------------
+calendar_plot <- dt_sub[, .(valor_promedio = mean(valor, na.rm = T)), .(fecha, nom_mag, nom_abv, ud_med)]
+
+# Dates as factors
+months <-  seq.Date(from = as.Date("2022-01-01"), length.out = 12, by = "month") %>% format("%B")
+wdays <-seq.Date(from = as.Date("2022-05-30"), length.out = 7, by = "day") %>% format("%A")
+calendar_plot[, `:=`(
+  year = year(fecha),
+  month = factor(format(fecha, "%B"), levels = months, labels = months),
+  wday = factor(weekdays(fecha), levels = wdays, labels = wdays),
+  week = as.numeric(format(fecha, "%W"))
+)]
+
+calendar_plot[, wmonth := 1 + week - min(week), .(year, month)]
+calendar_plot <- calendar_plot[order(year, month, wday)]
+i_mag <- "Dióxido de Nitrógeno"
+calendar_plot[nom_mag == i_mag & year >= 2012,
+              ggplot(.SD, aes(x = wmonth, y = wday, fill = valor_promedio)) +
+                geom_tile(colour = "white") +
+                facet_grid(year ~ month) +
+                scale_fill_gradient(low = "yellow", high = "red", ) +
+                scale_x_continuous(breaks = 1:5, limits = c(0, 6)) +
+                labs(
+                  x = "Semana del mes",
+                  y = NULL,
+                  title = paste0("Concentración de ", i_mag, " por día de la semana"),
+                  fill = paste(unique(nom_abv), unique(ud_med))
+                )]
