@@ -102,7 +102,7 @@ for (i in data_files[, files]) {
   dt <- rbind(dt_aux, dt)
 }
 
-dt <- rbind(dt_before_oct_2017, dt_after_oct_2017)
+
 cols_to_numeric <- str_subset(names(dt), pattern = '^V', negate = T)
 dt[, (cols_to_numeric) := lapply(.SD, as.numeric), .SDcols = cols_to_numeric]
 dt[, ANO := fifelse(ANO < 100, ANO + 2000, ANO)]
