@@ -1,7 +1,12 @@
 library(data.table)
 library(zoo)
 
+# Load data
 dt_aire_madrid_sub <- readRDS("data/processed/dt_aire_madrid_sub.RDS")
+
+# Load dictionaries
+tipo <- readRDS("dictionaries/tipo.RDS")
+zona <- readRDS("dictionaries/zona.RDS")
 
 # subset data 
 dt_aire_madrid_sub_2011 <- dt_aire_madrid_sub[fecha >= "2011-01-01"]
@@ -28,4 +33,9 @@ dt_aire_madrid_sub_2011 <- merge(ref_table, dt_aire_madrid_sub_2011, by = c(cols
 # 1: FALSE 505773
 # 2:  TRUE  15615
 
+# Add dictionaries
+dt_aire_madrid_sub_2011 <- dt_aire_madrid_sub_2011[zona, on = "id_name"]
+dt_aire_madrid_sub_2011 <- dt_aire_madrid_sub_2011[tipo, on = "id_name"]
+
+# Save
 saveRDS(dt_aire_madrid_sub_2011, "data/processed/dt_daily_mean_2011.RDS")
