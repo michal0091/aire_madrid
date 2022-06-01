@@ -13,6 +13,8 @@
 !./dictionaries/col_structure.RDS
 !./dictionaries/magnitudes_names.RDS
 !./dictionaries/station_names.RDS
+!./dictionaries/zona.RDS
+!./dictionaries/tipo.RDS
 
 # Ignore subdirectories of data
 ./data/processed/*/
